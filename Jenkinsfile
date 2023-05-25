@@ -14,7 +14,7 @@ pipeline {
                 dir('frontend') {
                     script  {
                         sshagent(['skey']) {
-                            sh "scp -o StrictHostKeyChecking=no -r * ubuntu@ip_addr_server:/home/ubuntu/"
+                            sh "scp -o StrictHostKeyChecking=no -r * mac@172.20.10.2:/Users/mac/"
                         }
                     }
                 }
@@ -26,7 +26,7 @@ pipeline {
                 dir('backend') {
                     script  {
                         sshagent(['skey']) {
-                            sh "scp -o StrictHostKeyChecking=no -r * ubuntu@ip_addr_server:/home/ubuntu/"
+                            sh "scp -o StrictHostKeyChecking=no -r * mac@172.20.10.2:/Users/mac/"
                         }
                     }
                 }
@@ -53,12 +53,12 @@ pipeline {
                 script {                    
                     // Install and run the app on the server
                      sshagent(['skey']) {                        
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@ip_addr_server 'sudo npm install && sudo pm2 start npm --name \"saba\" -- start'"
+                        sh "ssh -o StrictHostKeyChecking=no mac@172.20.10.2 'sudo npm install && sudo pm2 start npm --name \"saba\" -- start'"
                     }
                     
                     // Restart Nginx on the remote server
                     sshagent(['skey']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@ip_addr_server 'sudo service nginx restart && sudo pm2 restart \"saba\"'"
+                        sh "ssh -o StrictHostKeyChecking=no mac@172.20.10.2 'sudo service nginx restart && sudo pm2 restart \"saba\"'"
                     }
                 }
             }
@@ -69,12 +69,12 @@ pipeline {
                 script {                    
                     // Install and run the app on the server
                      sshagent(['skey']) {                        
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@ip_addr_server 'sudo npm install && sudo pm2 start npm --name \"saba\" -- start'"
+                        sh "ssh -o StrictHostKeyChecking=no mac@172.20.10.2 'sudo npm install && sudo pm2 start npm --name \"saba\" -- start'"
                     }
                     
                     // Restart Nginx on the remote server
                     sshagent(['skey']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@ip_addr_server 'sudo service nginx restart && sudo pm2 restart \"saba\"'"
+                        sh "ssh -o StrictHostKeyChecking=no mac@172.20.10.2 'sudo service nginx restart && sudo pm2 restart \"saba\"'"
                     }
                 }
             }
